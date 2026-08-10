@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>melmel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="scene-layer" aria-hidden="true">
+    <div class="sun"></div>
+    <div class="cloud cloud-1"></div>
+    <div class="cloud cloud-2"></div>
+    <div class="cloud cloud-3"></div>
+    <div class="cloud cloud-4"></div>
+    <div class="cloud cloud-5"></div>
+    <div class="cloud cloud-6"></div>
+    <div class="sea">
+      <svg class="wave wave-back" viewBox="0 0 1200 60" preserveAspectRatio="none">
+        <path d="M0,30 Q150,5 300,30 T600,30 T900,30 T1200,30 L1200,60 L0,60 Z" fill="#63c5da" opacity="0.5"></path>
+      </svg>
+      <svg class="wave wave-front" viewBox="0 0 1200 60" preserveAspectRatio="none">
+        <path d="M0,35 Q150,10 300,35 T600,35 T900,35 T1200,35 L1200,60 L0,60 Z" fill="#a8e3f2" opacity="0.6"></path>
+      </svg>
+    </div>
+    <div class="sand">
+      <svg class="shoreline" viewBox="0 0 1200 60" preserveAspectRatio="none">
+        <path d="M0,25 Q150,0 300,25 T600,25 T900,25 T1200,25 L1200,60 L0,60 Z" fill="#efd9a4"></path>
+      </svg>
+    </div>
+  </div>
+
+  <div id="fish-layer" aria-hidden="true"></div>
+
+  <div id="bubble-layer" aria-hidden="true"></div>
+
+  <main class="page">
+
+    <section class="hero" id="hero">
+      <div class="hero-content">
+        <h1 class="hero-title">
+          <span id="typed-text"></span><span class="cursor" id="cursor"></span>
+        </h1>
+        <button class="btn-start" id="btn-start"><span class="btn-label"></span></button>
+      </div>
+    </section>
+
+    <section class="section" id="section-1">
+      <div class="container photo-right">
+        <img class="section-photo" src="foto/foto9.jpg" alt="Kenangan" loading="lazy">
+        <h2>Selamat Ulang Tahun, My Beloved One</h2>    
+        <p>WOW 17 TAHUN, kayanya baru ajaaa kemaren sekolah menengah pertama, baru pertama kenal kamu, dan tahun esok udah lulus, semogaa masuk IPB yaaaaAaaA, ternyata waktu secepat ituuuu</p>
+      </div>
+    </section>
+
+    <section class="section" id="section-2">
+      <div class="container photo-left">
+        <img class="section-photo" src="foto/foto10.jpg" alt="Kenangan" loading="lazy">
+        <h2>Kesemogaan</h2>
+        <p>Teks yang ngga aku ganti cuman yang awal, yang ini dan seterusnya sudah dirubah, jadi aku cuman berharap kamu happy, sehat, dan sukses. kemungkinan kita bertemu lagi akan sangat kecil, orang tua ku 3 tahun lagi juga sudah pensiun, dan pasti akan banyak kejadian bersama yang akan terlewatkan, aku hanya bersemoga kalau kita bertemu lagi kita orang yang sama walaupun sepertinya ngga mungkin..</p>
+      </div>
+    </section>
+
+    <section class="section" id="section-3">
+      <div class="container photo-right">
+        <img class="section-photo" src="foto/foto11.jpg" alt="Kenangan" loading="lazy">
+        <h2>Kehidupan</h2>
+        <p>Kata-kata terakhir sih, kamu pasti sukses ya mel, aku selalu percaya kamu bakal jadi THE GREATEST PHARMACIST, dan kalo sukses tf aja ke BRI 727301011120504 Abi Fahrezi, canda hehe, dan kalau kamu ulang tahun cek aja web ini lagi bakal ada update yang ku buat untuk setiap 07/11</p>
+      </div>
+    </section>
+
+    <section class="section" id="section-4">
+      <div class="container photo-left">
+        <img class="section-photo" src="foto/foto12.jpg" alt="Kenangan" loading="lazy">
+        <h2>LaguuUuu</h2>
+        <p>Walaupun kamu gabakal dengerin, dan kamu pasti gasuka, tapi aku kalo dengerin lagu lagu ini bakal keingat kamu hehee, awalnya playlist yutub tapi baru dipindahin..zz</p>
+        <a class="btn-playlist" href="https://open.spotify.com/playlist/5lLlISYgQdW32ODOcGXmgW?si=Bmep_8D6TUqhYpaG7mXT3A&utm_source=copy-link" target="_blank" rel="noopener">playlist</a>
+      </div>
+    </section>
+
+    <section class="section" id="section-5">
+      <div class="container">
+        <h2>Galeriiiiiii</h2>
+        <p>486</p>
+        <div class="gallery">
+          <figure class="polaroid" data-src="foto/foto1.jpg">
+            <img src="foto/foto1.jpg" alt="Kenangan 1" loading="lazy">
+            <figcaption>Siapaa ni y</figcaption>
+          </figure>
+          <figure class="polaroid" data-src="foto/foto2.jpg">
+            <img src="foto/foto2.jpg" alt="Kenangan 2" loading="lazy">
+            <figcaption>waaawww</figcaption>
+          </figure>
+          <figure class="polaroid" data-src="foto/foto3.jpg">
+            <img src="foto/foto3.jpg" alt="Kenangan 3" loading="lazy">
+            <figcaption>imuttt e</figcaption>
+          </figure>
+          <figure class="polaroid" data-src="foto/foto4.jpg">
+            <img src="foto/foto4.jpg" alt="Kenangan 4" loading="lazy">
+            <figcaption>avvvv</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="section-carousel">
+      <div class="container">
+        <h2>Momen Momenzz</h2>
+        <div class="carousel">
+          <figure class="carousel-slide active" data-src="foto/foto5.jpg">
+            <img src="foto/foto5.jpg" alt="Momen 1" loading="lazy">
+          </figure>
+          <figure class="carousel-slide" data-src="foto/foto6.jpg">
+            <img src="foto/foto6.jpg" alt="Momen 2" loading="lazy">
+          </figure>
+          <figure class="carousel-slide" data-src="foto/foto7.jpg">
+            <img src="foto/foto7.jpg" alt="Momen 3" loading="lazy">
+          </figure>
+          <figure class="carousel-slide" data-src="foto/foto8.jpg">
+            <img src="foto/foto8.jpg" alt="Momen 4" loading="lazy">
+          </figure>
+          <figure class="carousel-slide" data-src="foto/foto14.jpg">
+            <img src="foto/foto14.jpg" alt="Momen 5" loading="lazy">
+          </figure>
+          <button class="carousel-btn carousel-prev" aria-label="Sebelumnya"></button>
+          <button class="carousel-btn carousel-next" aria-label="Berikutnya"></button>
+        </div>
+        <div class="carousel-dots"></div>
+      </div>
+    </section>
+
+    <section class="section" id="section-6">
+      <div class="container photo-right">
+        <img class="section-photo" src="foto/foto13.jpg" alt="Kenangan" loading="lazy">
+        <h2>Film</h2>
+        <p>Dari semua list ini 100% aku lupa sama film yang di Bioskop karena aku cuma mikirin kamu aja pada saat itu</p>
+        <a class="btn-playlist" href="https://boxd.it/Wt66A" target="_blank" rel="noopener">Iniii listnyaaa</a>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="lightbox" aria-hidden="true">
+    <img id="lightbox-img" src="" alt="Foto kenangan">
+  </div>
+
+  <div id="letter-overlay" aria-hidden="true">
+    <div class="letter">
+      <h2 class="letter-title">Teruntuk Amel Cheesecake</h2>
+      <p class="letter-body">
+        Hai melia, lagi apa?
+      </p>
+      <p class="letter-body">
+        semoga sehat selalu ya, website ini udah dibuat ketika kamu ulang tahun di 2025 sih, tapi aku mengurungkan niat untuk ngasi taunya, oiya itu lagu dipencettt yaa kalo belom idup hehe
+      </p>
+      <p class="letter-body">
+        tapi pada akhirnya aku kasih tahu jugaa yaaa, karena aku mau membuat memori yang baikk aja sii, kamu bisa ngescroll nya kalo mau tau ini web apa sich....
+      </p>
+      <button class="btn-close" id="btn-close">Tutup</button>
+    </div>
+  </div>
+
+  <button id="music-btn" aria-label="Putar atau jeda musik">
+    <img id="music-disc" src="songs/daniel.png" alt="">
+    <span class="music-info">
+      <span class="music-title">Japanese Denim</span>
+      <span class="music-artist">Daniel Caesar</span>
+    </span>
+  </button>
+
+  <audio id="music-audio" src="songs/Daniel Caesar - Japanese Denim.mp3" loop autoplay></audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
