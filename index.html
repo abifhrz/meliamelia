@@ -8,6 +8,20 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <noscript>
+    <style>
+      .section .container,
+      .section .container h2,
+      .section .container p {
+        opacity: 1;
+        transform: none;
+      }
+      #btn-start,
+      #cursor {
+        display: none;
+      }
+    </style>
+  </noscript>
 </head>
 <body>
 
@@ -19,12 +33,75 @@
     <div class="cloud cloud-4"></div>
     <div class="cloud cloud-5"></div>
     <div class="cloud cloud-6"></div>
+    <div class="cloud cloud-7"></div>
+    <div class="cloud cloud-8"></div>
+    <div class="cloud cloud-9"></div>
+    <div class="cloud cloud-10"></div>
+    <div class="cloud cloud-11"></div>
+    <div class="cloud cloud-12"></div>
     <div class="sea">
+      <svg class="wave wave-down" viewBox="0 0 1200 60" preserveAspectRatio="none">
+        <path d="M0,30 Q150,5 300,30 T600,30 T900,30 T1200,30 L1200,60 L0,60 Z" fill="#1e6590" opacity="0.4"></path>
+      </svg>
       <svg class="wave wave-back" viewBox="0 0 1200 60" preserveAspectRatio="none">
-        <path d="M0,30 Q150,5 300,30 T600,30 T900,30 T1200,30 L1200,60 L0,60 Z" fill="#63c5da" opacity="0.5"></path>
+        <path d="M0,30 Q150,5 300,30 T600,30 T900,30 T1200,30 L1200,60 L0,60 Z" fill="#008080" opacity="0.5"></path>
+      </svg>
+      <svg class="wave wave-mid" viewBox="0 0 1200 60" preserveAspectRatio="none">
+        <path d="M0,30 Q150,5 300,30 T600,30 T900,30 T1200,30 L1200,60 L0,60 Z" fill="#48d1cc" opacity="0.6"></path>
       </svg>
       <svg class="wave wave-front" viewBox="0 0 1200 60" preserveAspectRatio="none">
-        <path d="M0,35 Q150,10 300,35 T600,35 T900,35 T1200,35 L1200,60 L0,60 Z" fill="#a8e3f2" opacity="0.6"></path>
+        <path d="M0,35 Q150,10 300,35 T600,35 T900,35 T1200,35 L1200,60 L0,60 Z" fill="#7fffd4" opacity="0.7"></path>
+      </svg>
+    </div>
+
+    <!-- Whale -->
+    <div class="whale" aria-hidden="true">
+      <img src="fish/whale2.svg" alt="" width="180" height="180">
+    </div>
+
+    <!-- Jellyfish -->
+    <div class="jellyfish jelly-1" aria-hidden="true">
+      <svg viewBox="0 0 60 80" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="30" cy="25" rx="20" ry="15" fill="rgba(200, 220, 255, 0.4)"/>
+        <path d="M10,25 Q12,55 20,70 Q30,55 40,70 Q48,55 50,25" fill="rgba(180, 200, 255, 0.3)"/>
+        <path d="M18,30 Q15,55 22,68" stroke="rgba(180, 200, 255, 0.4)" stroke-width="1" fill="none"/>
+        <path d="M30,30 Q32,55 35,68" stroke="rgba(180, 200, 255, 0.4)" stroke-width="1" fill="none"/>
+        <path d="M42,28 Q40,53 38,66" stroke="rgba(180, 200, 255, 0.4)" stroke-width="1" fill="none"/>
+      </svg>
+    </div>
+    <div class="jellyfish jelly-2" aria-hidden="true">
+      <svg viewBox="0 0 45 60" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="23" cy="18" rx="15" ry="12" fill="rgba(200, 240, 255, 0.45)"/>
+        <path d="M10,18 Q12,45 18,58 Q23,45 28,58 Q34,45 35,18" fill="rgba(180, 240, 255, 0.35)"/>
+      </svg>
+    </div>
+    <div class="jellyfish jelly-3" aria-hidden="true">
+      <svg viewBox="0 0 55 70" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="28" cy="22" rx="17" ry="14" fill="rgba(210, 220, 255, 0.4)"/>
+        <path d="M11,22 Q13,50 20,65 Q28,50 36,65 Q43,50 45,22" fill="rgba(190, 230, 255, 0.3)"/>
+      </svg>
+    </div>
+
+    <!-- Sea Turtle -->
+    <div class="seaturtle" aria-hidden="true">
+      <svg viewBox="0 0 100 70" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="50" cy="35" rx="45" ry="28" fill="#4a9" opacity="0.8"/>
+        <ellipse cx="25" cy="30" rx="10" ry="6" fill="#4a9" opacity="0.7" transform="rotate(-30 25 30)"/>
+        <ellipse cx="75" cy="40" rx="9" ry="5" fill="#4a9" opacity="0.7" transform="rotate(30 75 40)"/>
+        <ellipse cx="45" cy="25" rx="8" ry="5" fill="#4a9" opacity="0.7"/>
+        <circle cx="35" cy="35" r="5" fill="#090"/>
+        <ellipse cx="65" cy="38" rx="6" ry="3" fill="#090"/>
+      </svg>
+    </div>
+
+    <!-- Crab -->
+    <div class="crab" aria-hidden="true">
+      <svg viewBox="0 0 70 50" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="35" cy="27" rx="25" ry="18" fill="#e44" opacity="0.85"/>
+        <path d="M10,25 L-5,20 M10,27 L-5,27 M10,29 L-5,34" stroke="#a33" stroke-width="4" stroke-linecap="round"/>
+        <path d="M60,26 L75,20 M60,28 L75,29 M60,30 L75,35" stroke="#a33" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="22" cy="25" r="4" fill="#e44"/>
+        <circle cx="48" cy="30" r="4" fill="#e44"/>
       </svg>
     </div>
     <div class="sand">
@@ -43,15 +120,15 @@
     <section class="hero" id="hero">
       <div class="hero-content">
         <h1 class="hero-title">
-          <span id="typed-text"></span><span class="cursor" id="cursor"></span>
+          <span id="typed-text">Hiii, Amel Cheesecake</span><span class="cursor" id="cursor"></span>
         </h1>
-        <button class="btn-start" id="btn-start"><span class="btn-label"></span></button>
+        <button class="btn-start" id="btn-start" aria-label="Buka surat" aria-haspopup="dialog" disabled><span class="btn-label"></span></button>
       </div>
     </section>
 
     <section class="section" id="section-1">
       <div class="container photo-right">
-        <img class="section-photo" src="foto/foto9.jpg" alt="Kenangan" loading="lazy">
+        <img class="section-photo" src="foto/foto9.webp" alt="Kenangan" width="768" height="1024" decoding="async" loading="lazy">
         <h2>Selamat Ulang Tahun, My Beloved One</h2>    
         <p>WOW 17 TAHUN, kayanya baru ajaaa kemaren sekolah menengah pertama, baru pertama kenal kamu, dan tahun esok udah lulus, semogaa masuk IPB yaaaaAaaA, ternyata waktu secepat ituuuu</p>
       </div>
@@ -59,7 +136,7 @@
 
     <section class="section" id="section-2">
       <div class="container photo-left">
-        <img class="section-photo" src="foto/foto10.jpg" alt="Kenangan" loading="lazy">
+        <img class="section-photo" src="foto/foto10.webp" alt="Kenangan" width="768" height="1024" decoding="async" loading="lazy">
         <h2>Kesemogaan</h2>
         <p>Teks yang ngga aku ganti cuman yang awal, yang ini dan seterusnya sudah dirubah, jadi aku cuman berharap kamu happy, sehat, dan sukses. kemungkinan kita bertemu lagi akan sangat kecil, orang tua ku 3 tahun lagi juga sudah pensiun, dan pasti akan banyak kejadian bersama yang akan terlewatkan, aku hanya bersemoga kalau kita bertemu lagi kita orang yang sama walaupun sepertinya ngga mungkin..</p>
       </div>
@@ -67,7 +144,7 @@
 
     <section class="section" id="section-3">
       <div class="container photo-right">
-        <img class="section-photo" src="foto/foto11.jpg" alt="Kenangan" loading="lazy">
+        <img class="section-photo" src="foto/foto11.webp" alt="Kenangan" width="768" height="1024" decoding="async" loading="lazy">
         <h2>Kehidupan</h2>
         <p>Kata-kata terakhir sih, kamu pasti sukses ya mel, aku selalu percaya kamu bakal jadi THE GREATEST PHARMACIST, dan kalo sukses tf aja ke BRI 727301011120504 Abi Fahrezi, canda hehe, dan kalau kamu ulang tahun cek aja web ini lagi bakal ada update yang ku buat untuk setiap 07/11</p>
       </div>
@@ -75,7 +152,7 @@
 
     <section class="section" id="section-4">
       <div class="container photo-left">
-        <img class="section-photo" src="foto/foto12.jpg" alt="Kenangan" loading="lazy">
+        <img class="section-photo" src="foto/foto12.webp" alt="Kenangan" width="768" height="1024" decoding="async" loading="lazy">
         <h2>LaguuUuu</h2>
         <p>Walaupun kamu gabakal dengerin, dan kamu pasti gasuka, tapi aku kalo dengerin lagu lagu ini bakal keingat kamu hehee, awalnya playlist yutub tapi baru dipindahin..zz</p>
         <a class="btn-playlist" href="https://open.spotify.com/playlist/5lLlISYgQdW32ODOcGXmgW?si=Bmep_8D6TUqhYpaG7mXT3A&utm_source=copy-link" target="_blank" rel="noopener">playlist</a>
@@ -87,20 +164,20 @@
         <h2>Galeriiiiiii</h2>
         <p>486</p>
         <div class="gallery">
-          <figure class="polaroid" data-src="foto/foto1.jpg">
-            <img src="foto/foto1.jpg" alt="Kenangan 1" loading="lazy">
+          <figure class="polaroid" data-src="foto/foto1.webp">
+            <img src="foto/foto1.webp" alt="Kenangan 1" width="768" height="1024" decoding="async" loading="lazy">
             <figcaption>Siapaa ni y</figcaption>
           </figure>
-          <figure class="polaroid" data-src="foto/foto2.jpg">
-            <img src="foto/foto2.jpg" alt="Kenangan 2" loading="lazy">
+          <figure class="polaroid" data-src="foto/foto2.webp">
+            <img src="foto/foto2.webp" alt="Kenangan 2" width="768" height="1024" decoding="async" loading="lazy">
             <figcaption>waaawww</figcaption>
           </figure>
-          <figure class="polaroid" data-src="foto/foto3.jpg">
-            <img src="foto/foto3.jpg" alt="Kenangan 3" loading="lazy">
+          <figure class="polaroid" data-src="foto/foto3.webp">
+            <img src="foto/foto3.webp" alt="Kenangan 3" width="768" height="1024" decoding="async" loading="lazy">
             <figcaption>imuttt e</figcaption>
           </figure>
-          <figure class="polaroid" data-src="foto/foto4.jpg">
-            <img src="foto/foto4.jpg" alt="Kenangan 4" loading="lazy">
+          <figure class="polaroid" data-src="foto/foto4.webp">
+            <img src="foto/foto4.webp" alt="Kenangan 4" width="768" height="1024" decoding="async" loading="lazy">
             <figcaption>avvvv</figcaption>
           </figure>
         </div>
@@ -111,20 +188,20 @@
       <div class="container">
         <h2>Momen Momenzz</h2>
         <div class="carousel">
-          <figure class="carousel-slide active" data-src="foto/foto5.jpg">
-            <img src="foto/foto5.jpg" alt="Momen 1" loading="lazy">
+          <figure class="carousel-slide active" data-src="foto/foto5.webp">
+            <img src="foto/foto5.webp" alt="Momen 1" width="768" height="1024" decoding="async" loading="lazy">
           </figure>
-          <figure class="carousel-slide" data-src="foto/foto6.jpg">
-            <img src="foto/foto6.jpg" alt="Momen 2" loading="lazy">
+          <figure class="carousel-slide" data-src="foto/foto6.webp">
+            <img src="foto/foto6.webp" alt="Momen 2" width="768" height="1024" decoding="async" loading="lazy">
           </figure>
-          <figure class="carousel-slide" data-src="foto/foto7.jpg">
-            <img src="foto/foto7.jpg" alt="Momen 3" loading="lazy">
+          <figure class="carousel-slide" data-src="foto/foto7.webp">
+            <img src="foto/foto7.webp" alt="Momen 3" width="768" height="1024" decoding="async" loading="lazy">
           </figure>
-          <figure class="carousel-slide" data-src="foto/foto8.jpg">
-            <img src="foto/foto8.jpg" alt="Momen 4" loading="lazy">
+          <figure class="carousel-slide" data-src="foto/foto8.webp">
+            <img src="foto/foto8.webp" alt="Momen 4" width="768" height="1024" decoding="async" loading="lazy">
           </figure>
-          <figure class="carousel-slide" data-src="foto/foto14.jpg">
-            <img src="foto/foto14.jpg" alt="Momen 5" loading="lazy">
+          <figure class="carousel-slide" data-src="foto/foto14.webp">
+            <img src="foto/foto14.webp" alt="Momen 5" width="768" height="1024" decoding="async" loading="lazy">
           </figure>
           <button class="carousel-btn carousel-prev" aria-label="Sebelumnya"></button>
           <button class="carousel-btn carousel-next" aria-label="Berikutnya"></button>
@@ -135,7 +212,7 @@
 
     <section class="section" id="section-6">
       <div class="container photo-right">
-        <img class="section-photo" src="foto/foto13.jpg" alt="Kenangan" loading="lazy">
+        <img class="section-photo" src="foto/foto13.webp" alt="Kenangan" width="768" height="1024" decoding="async" loading="lazy">
         <h2>Film</h2>
         <p>Dari semua list ini 100% aku lupa sama film yang di Bioskop karena aku cuma mikirin kamu aja pada saat itu</p>
         <a class="btn-playlist" href="https://boxd.it/Wt66A" target="_blank" rel="noopener">Iniii listnyaaa</a>
@@ -144,13 +221,13 @@
 
   </main>
 
-  <div id="lightbox" aria-hidden="true">
-    <img id="lightbox-img" src="" alt="Foto kenangan">
+  <div id="lightbox" role="dialog" aria-modal="true" aria-label="Foto kenangan" aria-hidden="true" tabindex="-1" inert>
+    <img id="lightbox-img" alt="Foto kenangan">
   </div>
 
-  <div id="letter-overlay" aria-hidden="true">
+  <div id="letter-overlay" role="dialog" aria-modal="true" aria-labelledby="letter-title" aria-hidden="true" inert>
     <div class="letter">
-      <h2 class="letter-title">Teruntuk Amel Cheesecake</h2>
+      <h2 class="letter-title" id="letter-title">Teruntuk Amel Cheesecake</h2>
       <p class="letter-body">
         Hai melia, lagi apa?
       </p>
@@ -164,15 +241,15 @@
     </div>
   </div>
 
-  <button id="music-btn" aria-label="Putar atau jeda musik">
-    <img id="music-disc" src="songs/daniel.png" alt="">
+  <button id="music-btn" aria-label="Putar atau jeda musik" aria-pressed="false" aria-controls="music-audio">
+    <img id="music-disc" src="songs/daniel.webp" alt="" width="156" height="156">
     <span class="music-info">
       <span class="music-title">Japanese Denim</span>
       <span class="music-artist">Daniel Caesar</span>
     </span>
   </button>
 
-  <audio id="music-audio" src="songs/Daniel Caesar - Japanese Denim.mp3" loop autoplay></audio>
+  <audio id="music-audio" src="songs/Daniel Caesar - Japanese Denim.mp3" loop preload="none"></audio>
 
   <script src="script.js"></script>
 </body>

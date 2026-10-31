@@ -1,73 +1,122 @@
-const text = "Hiii, Amel Cheesecake";
 const typedEl = document.getElementById("typed-text");
+const text = typedEl.textContent.trim();
 const cursorEl = document.getElementById("cursor");
 const btnStart = document.getElementById("btn-start");
-const section1 = document.getElementById("section-1");
 const letterOverlay = document.getElementById("letter-overlay");
 const btnClose = document.getElementById("btn-close");
 const musicBtn = document.getElementById("music-btn");
 const musicAudio = document.getElementById("music-audio");
+const page = document.querySelector(".page");
 
-const RESUME_EVENTS = ["pointerdown", "touchstart", "keydown", "click", "wheel"];
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const RESUME_EVENTS = ["pointerdown", "keydown", "click"];
 
 let musicStarted = false;
+
+function stopResumeListeners() {
+  for (const evt of RESUME_EVENTS) {
+    window.removeEventListener(evt, resumeMusic);
+  }
+}
 
 async function tryPlayMusic() {
   try {
     await musicAudio.play();
     musicStarted = true;
-    musicBtn.classList.add("playing");
+    stopResumeListeners();
+    return true;
   } catch (err) {
     return false;
   }
-  return true;
 }
 
-function resumeMusic() {
-  if (!musicStarted && tryPlayMusic()) {
-    for (const evt of RESUME_EVENTS) {
-      window.removeEventListener(evt, resumeMusic);
-    }
-  }
+function resumeMusic(event) {
+  if (musicStarted) return;
+  if (event && musicBtn.contains(event.target)) return;
+  tryPlayMusic();
 }
 
-tryPlayMusic();
 for (const evt of RESUME_EVENTS) {
   window.addEventListener(evt, resumeMusic, { passive: true });
 }
+
+musicAudio.addEventListener("play", () => {
+  musicBtn.classList.add("playing");
+  musicBtn.setAttribute("aria-pressed", "true");
+});
+
+musicAudio.addEventListener("pause", () => {
+  musicBtn.classList.remove("playing");
+  musicBtn.setAttribute("aria-pressed", "false");
+});
 
 musicBtn.addEventListener("click", () => {
   if (musicAudio.paused) {
     tryPlayMusic();
   } else {
     musicAudio.pause();
-    musicBtn.classList.remove("playing");
   }
 });
 
 let index = 0;
 
 function typeText() {
+  if (prefersReducedMotion) {
+    typedEl.textContent = text;
+    cursorEl.style.display = "none";
+    btnStart.disabled = false;
+    btnStart.classList.add("visible");
+    return;
+  }
+
   if (index < text.length) {
     typedEl.textContent += text.charAt(index);
     index++;
     setTimeout(typeText, 120);
   } else {
     cursorEl.style.display = "none";
+    btnStart.disabled = false;
     btnStart.classList.add("visible");
   }
 }
 
+typedEl.textContent = "";
 typeText();
 
-btnStart.addEventListener("click", () => {
+let letterTrigger = null;
+
+function setBackgroundInert(state) {
+  page.inert = state;
+  musicBtn.inert = state;
+}
+
+function openLetter() {
+  letterTrigger = document.activeElement === document.body ? btnStart : document.activeElement;
+  letterOverlay.inert = false;
   letterOverlay.classList.add("open");
   letterOverlay.setAttribute("aria-hidden", "false");
-});
+  document.body.classList.add("no-scroll");
+  setBackgroundInert(true);
+  btnClose.focus();
+}
 
-btnClose.addEventListener("click", () => {
+function closeLetter() {
+  if (!letterOverlay.classList.contains("open")) return;
   letterOverlay.classList.remove("open");
+  letterOverlay.inert = true;
   letterOverlay.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("no-scroll");
+  setBackgroundInert(false);
+  if (letterTrigger && typeof letterTrigger.focus === "function") {
+    letterTrigger.focus();
+  }
+  letterTrigger = null;
+}
+
+btnStart.addEventListener("click", openLetter);
+btnClose.addEventListener("click", closeLetter);
+letterOverlay.addEventListener("click", (event) => {
+  if (event.target === letterOverlay) closeLetter();
 });
 
 const FISH_IMAGES = [
@@ -81,7 +130,7 @@ const FISH_IMAGES = [
   "fish/peixinhos8.png"
 ];
 
-const FISH_COUNT = 100;
+const FISH_COUNT = prefersReducedMotion ? 0 : 100;
 const fishLayer = document.getElementById("fish-layer");
 
 function seaBounds() {
@@ -135,7 +184,7 @@ function swimFrame(t) {
       f.x = w + margin;
     }
 
-    f.el.style.transform = `scaleX(${f.dir}) translate(${f.x}px, ${f.y}px)`;
+    f.el.style.transform = `translate(${f.x}px, ${f.y}px) scaleX(${f.dir})`;
   }
 
   requestAnimationFrame(swimFrame);
@@ -180,50 +229,88 @@ function spawnBubble() {
 
 let lastSpawn = 0;
 
-window.addEventListener(
-  "scroll",
-  () => {
-    const now = Date.now();
-    if (now - lastSpawn < 120) return;
-    lastSpawn = now;
-    const count = Math.floor(random(1, 3));
-    for (let i = 0; i < count; i++) {
-      spawnBubble();
-    }
-  },
-  { passive: true }
-);
+if (!prefersReducedMotion) {
+  window.addEventListener(
+    "scroll",
+    () => {
+      const now = Date.now();
+      if (now - lastSpawn < 120) return;
+      lastSpawn = now;
+      const count = Math.floor(random(1, 3));
+      for (let i = 0; i < count; i++) {
+        spawnBubble();
+      }
+    },
+    { passive: true }
+  );
+}
 
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightbox-img");
+let lightboxTrigger = null;
+
+function openLightbox(src, trigger) {
+  lightboxTrigger = trigger || null;
+  lightboxImg.src = src;
+  lightbox.inert = false;
+  lightbox.classList.add("open");
+  lightbox.setAttribute("aria-hidden", "false");
+  document.body.classList.add("no-scroll");
+  setBackgroundInert(true);
+  stopCarousel();
+  lightbox.focus();
+}
+
+function closeLightbox() {
+  if (!lightbox.classList.contains("open")) return;
+  lightbox.classList.remove("open");
+  lightbox.inert = true;
+  lightbox.setAttribute("aria-hidden", "true");
+  lightboxImg.removeAttribute("src");
+  document.body.classList.remove("no-scroll");
+  setBackgroundInert(false);
+  if (lightboxTrigger && typeof lightboxTrigger.focus === "function") {
+    lightboxTrigger.focus();
+  }
+  lightboxTrigger = null;
+  startCarousel();
+}
+
+function preparePhotoTrigger(item, label) {
+  item.tabIndex = 0;
+  item.setAttribute("role", "button");
+  item.setAttribute("aria-label", label);
+  item.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      item.click();
+    }
+  });
+}
 
 document.querySelectorAll(".polaroid").forEach((item) => {
-  item.addEventListener("click", () => {
-    lightboxImg.src = item.dataset.src;
-    lightbox.classList.add("open");
-    lightbox.setAttribute("aria-hidden", "false");
-  });
+  const caption = item.querySelector("figcaption");
+  preparePhotoTrigger(item, caption ? caption.textContent.trim() : "Foto kenangan");
+  item.addEventListener("click", () => openLightbox(item.dataset.src, item));
 });
 
-lightbox.addEventListener("click", () => {
-  lightbox.classList.remove("open");
-  lightbox.setAttribute("aria-hidden", "true");
-  lightboxImg.src = "";
-});
+lightbox.addEventListener("click", closeLightbox);
 
 const carouselSlides = Array.from(document.querySelectorAll(".carousel-slide"));
+const carousel = document.querySelector(".carousel");
 const carouselDots = document.querySelector(".carousel-dots");
 const carouselPrev = document.querySelector(".carousel-prev");
 const carouselNext = document.querySelector(".carousel-next");
 let carouselIndex = 0;
 let carouselTimer = null;
+let carouselHovered = false;
+let carouselFocused = false;
 
 carouselSlides.forEach((slide, i) => {
-  slide.addEventListener("click", () => {
-    lightboxImg.src = slide.dataset.src;
-    lightbox.classList.add("open");
-    lightbox.setAttribute("aria-hidden", "false");
-  });
+  const slideImg = slide.querySelector("img");
+  preparePhotoTrigger(slide, slideImg ? slideImg.alt : "Foto kenangan");
+  slide.addEventListener("click", () => openLightbox(slide.dataset.src, slide));
+
   const dot = document.createElement("button");
   dot.setAttribute("aria-label", "Momen " + (i + 1));
   dot.addEventListener("click", () => {
@@ -236,10 +323,23 @@ carouselSlides.forEach((slide, i) => {
 function goToSlide(i) {
   carouselIndex = (i + carouselSlides.length) % carouselSlides.length;
   carouselSlides.forEach((slide, idx) => {
-    slide.classList.toggle("active", idx === carouselIndex);
+    const isActive = idx === carouselIndex;
+    slide.classList.toggle("active", isActive);
+    slide.tabIndex = isActive ? 0 : -1;
+    if (isActive) {
+      slide.removeAttribute("aria-hidden");
+    } else {
+      slide.setAttribute("aria-hidden", "true");
+    }
   });
   Array.from(carouselDots.children).forEach((dot, idx) => {
-    dot.classList.toggle("active", idx === carouselIndex);
+    const isActive = idx === carouselIndex;
+    dot.classList.toggle("active", isActive);
+    if (isActive) {
+      dot.setAttribute("aria-current", "true");
+    } else {
+      dot.removeAttribute("aria-current");
+    }
   });
 }
 
@@ -251,10 +351,84 @@ function prevSlide() {
   goToSlide(carouselIndex - 1);
 }
 
-function restartCarousel() {
-  if (carouselTimer) clearInterval(carouselTimer);
+function canAutoPlay() {
+  return (
+    !prefersReducedMotion &&
+    !carouselHovered &&
+    !carouselFocused &&
+    !document.hidden &&
+    !lightbox.classList.contains("open")
+  );
+}
+
+function startCarousel() {
+  if (!canAutoPlay() || carouselTimer) return;
   carouselTimer = setInterval(nextSlide, 3500);
 }
+
+function stopCarousel() {
+  if (carouselTimer) {
+    clearInterval(carouselTimer);
+    carouselTimer = null;
+  }
+}
+
+function restartCarousel() {
+  stopCarousel();
+  startCarousel();
+}
+
+carousel.addEventListener("mouseenter", () => {
+  carouselHovered = true;
+  stopCarousel();
+});
+
+carousel.addEventListener("mouseleave", () => {
+  carouselHovered = false;
+  startCarousel();
+});
+
+function isCarouselFocus(target) {
+  return carousel.contains(target) || carouselDots.contains(target);
+}
+
+function handleCarouselFocusIn() {
+  carouselFocused = true;
+  stopCarousel();
+}
+
+function handleCarouselFocusOut(event) {
+  if (!isCarouselFocus(event.relatedTarget)) {
+    carouselFocused = false;
+    startCarousel();
+  }
+}
+
+function handleCarouselKeydown(event) {
+  if (event.key === "ArrowLeft") {
+    event.preventDefault();
+    prevSlide();
+    restartCarousel();
+  } else if (event.key === "ArrowRight") {
+    event.preventDefault();
+    nextSlide();
+    restartCarousel();
+  }
+}
+
+for (const region of [carousel, carouselDots]) {
+  region.addEventListener("focusin", handleCarouselFocusIn);
+  region.addEventListener("focusout", handleCarouselFocusOut);
+  region.addEventListener("keydown", handleCarouselKeydown);
+}
+
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) {
+    stopCarousel();
+  } else {
+    startCarousel();
+  }
+});
 
 carouselPrev.addEventListener("click", () => {
   prevSlide();
@@ -285,4 +459,15 @@ document.querySelectorAll(".section .container").forEach((el) => {
   sectionObserver.observe(el);
 });
 
-requestAnimationFrame(swimFrame);
+document.addEventListener("keydown", (event) => {
+  if (event.key !== "Escape") return;
+  if (lightbox.classList.contains("open")) {
+    closeLightbox();
+  } else if (letterOverlay.classList.contains("open")) {
+    closeLetter();
+  }
+});
+
+if (FISH_COUNT > 0) {
+  requestAnimationFrame(swimFrame);
+}
