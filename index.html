@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>melmel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <noscript>
     <style>
@@ -23,8 +26,7 @@
 <body>
 
   <div id="scene-layer" aria-hidden="true">
-    <div class="sun" id="sun" role="button" aria-label="Toggle Night Mode" tabindex="0"></div>
-    <div id="star-layer"></div>
+    <div class="sun"></div>
     <div class="cloud cloud-1"></div>
     <div class="cloud cloud-2"></div>
     <div class="cloud cloud-3"></div>
@@ -35,9 +37,79 @@
     <div class="cloud cloud-8"></div>
     <div class="cloud cloud-9"></div>
     <div class="cloud cloud-10"></div>
-  </div>
+    <div class="cloud cloud-11"></div>
+    <div class="cloud cloud-12"></div>
+    <div class="sea">
+      <svg class="wave wave-down" viewBox="0 0 1200 60" preserveAspectRatio="none">
+        <path d="M0,30 Q150,5 300,30 T600,30 T900,30 T1200,30 L1200,60 L0,60 Z" fill="#1e6590" opacity="0.4"></path>
+      </svg>
+      <svg class="wave wave-back" viewBox="0 0 1200 60" preserveAspectRatio="none">
+        <path d="M0,30 Q150,5 300,30 T600,30 T900,30 T1200,30 L1200,60 L0,60 Z" fill="#008080" opacity="0.5"></path>
+      </svg>
+      <svg class="wave wave-mid" viewBox="0 0 1200 60" preserveAspectRatio="none">
+        <path d="M0,30 Q150,5 300,30 T600,30 T900,30 T1200,30 L1200,60 L0,60 Z" fill="#48d1cc" opacity="0.6"></path>
+      </svg>
+      <svg class="wave wave-front" viewBox="0 0 1200 60" preserveAspectRatio="none">
+        <path d="M0,35 Q150,10 300,35 T600,35 T900,35 T1200,35 L1200,60 L0,60 Z" fill="#7fffd4" opacity="0.7"></path>
+      </svg>
+    </div>
 
-  <div class="sea" aria-hidden="true"></div>
+    <!-- Whale -->
+    <div class="whale" aria-hidden="true">
+      <img src="fish/whale2.svg" alt="" width="180" height="180">
+    </div>
+
+    <!-- Jellyfish -->
+    <div class="jellyfish jelly-1" aria-hidden="true">
+      <svg viewBox="0 0 60 80" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="30" cy="25" rx="20" ry="15" fill="rgba(200, 220, 255, 0.4)"/>
+        <path d="M10,25 Q12,55 20,70 Q30,55 40,70 Q48,55 50,25" fill="rgba(180, 200, 255, 0.3)"/>
+        <path d="M18,30 Q15,55 22,68" stroke="rgba(180, 200, 255, 0.4)" stroke-width="1" fill="none"/>
+        <path d="M30,30 Q32,55 35,68" stroke="rgba(180, 200, 255, 0.4)" stroke-width="1" fill="none"/>
+        <path d="M42,28 Q40,53 38,66" stroke="rgba(180, 200, 255, 0.4)" stroke-width="1" fill="none"/>
+      </svg>
+    </div>
+    <div class="jellyfish jelly-2" aria-hidden="true">
+      <svg viewBox="0 0 45 60" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="23" cy="18" rx="15" ry="12" fill="rgba(200, 240, 255, 0.45)"/>
+        <path d="M10,18 Q12,45 18,58 Q23,45 28,58 Q34,45 35,18" fill="rgba(180, 240, 255, 0.35)"/>
+      </svg>
+    </div>
+    <div class="jellyfish jelly-3" aria-hidden="true">
+      <svg viewBox="0 0 55 70" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="28" cy="22" rx="17" ry="14" fill="rgba(210, 220, 255, 0.4)"/>
+        <path d="M11,22 Q13,50 20,65 Q28,50 36,65 Q43,50 45,22" fill="rgba(190, 230, 255, 0.3)"/>
+      </svg>
+    </div>
+
+    <!-- Sea Turtle -->
+    <div class="seaturtle" aria-hidden="true">
+      <svg viewBox="0 0 100 70" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="50" cy="35" rx="45" ry="28" fill="#4a9" opacity="0.8"/>
+        <ellipse cx="25" cy="30" rx="10" ry="6" fill="#4a9" opacity="0.7" transform="rotate(-30 25 30)"/>
+        <ellipse cx="75" cy="40" rx="9" ry="5" fill="#4a9" opacity="0.7" transform="rotate(30 75 40)"/>
+        <ellipse cx="45" cy="25" rx="8" ry="5" fill="#4a9" opacity="0.7"/>
+        <circle cx="35" cy="35" r="5" fill="#090"/>
+        <ellipse cx="65" cy="38" rx="6" ry="3" fill="#090"/>
+      </svg>
+    </div>
+
+    <!-- Crab -->
+    <div class="crab" aria-hidden="true">
+      <svg viewBox="0 0 70 50" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="35" cy="27" rx="25" ry="18" fill="#e44" opacity="0.85"/>
+        <path d="M10,25 L-5,20 M10,27 L-5,27 M10,29 L-5,34" stroke="#a33" stroke-width="4" stroke-linecap="round"/>
+        <path d="M60,26 L75,20 M60,28 L75,29 M60,30 L75,35" stroke="#a33" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="22" cy="25" r="4" fill="#e44"/>
+        <circle cx="48" cy="30" r="4" fill="#e44"/>
+      </svg>
+    </div>
+    <div class="sand">
+      <svg class="shoreline" viewBox="0 0 1200 60" preserveAspectRatio="none">
+        <path d="M0,25 Q150,0 300,25 T600,25 T900,25 T1200,25 L1200,60 L0,60 Z" fill="#efd9a4"></path>
+      </svg>
+    </div>
+  </div>
 
   <div id="fish-layer" aria-hidden="true"></div>
 
@@ -177,7 +249,7 @@
     </span>
   </button>
 
-  <audio id="music-audio" src="songs/Daniel%20Caesar%20-%20Japanese%20Denim.mp3" loop preload="auto"></audio>
+  <audio id="music-audio" src="songs/Daniel Caesar - Japanese Denim.mp3" loop preload="none"></audio>
 
   <script src="script.js"></script>
 </body>
