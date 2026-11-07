@@ -471,3 +471,95 @@ document.addEventListener("keydown", (event) => {
 if (FISH_COUNT > 0) {
   requestAnimationFrame(swimFrame);
 }
+
+const sunEl = document.getElementById("sun");
+let nightMode = false;
+
+const dayTexts = [
+  "WOW 17 TAHUN, kayanya baru ajaaa kemaren sekolah menengah pertama, baru pertama kenal kamu, dan tahun esok udah lulus, semogaa masuk IPB yaaaaAaaA, ternyata waktu secepat ituuuu",
+  "Semoga di usia yang ke-17 ini kamu selalu dilimpahi kebahagiaan, tercapai semua cita-citanya, dan tetap menjadi Amel yang ceria.",
+  "Terima kasih sudah menemani hari-hari dengan senyuman manis. Nikmati setiap momen indah di bawah laut ini ya!",
+  "Website ini spesial banget buat kamu, semoga kenangan-kenangan kita terekam dengan baik di sini selamanya."
+];
+
+const nightTexts = [
+  "Di bawah langit malam yang tenang dan bintang-bintang yang bersinar, semoga mimpi-mimpimu setinggi angkasa.",
+  "Malam pun tiba, tapi kenangan dan doa baik untukmu tidak pernah tidur. Selamat beristirahat dengan damai.",
+  "Suasana pantai malam hari ditemani cahaya rembulan dan gemerlap biota laut, semoga membuat harimu semakin berkesan.",
+  "Teruslah bersinar terang bagai bintang malam, Amel Cheesecake. Selamat malam dan mimpi indah!"
+];
+
+const dayLetter = [
+  "Hai melia, lagi apa?",
+  "semoga sehat selalu ya, website ini udah dibuat ketika kamu ulang tahun di 2025 sih, tapi aku mengurungkan niat untuk ngasi taunya, oiya itu lagu dipencettt yaa kalo belom idup hehe",
+  "tapi pada akhirnya aku kasih tahu jugaa yaaa, karena aku mau membuat memori yang baikk aja sii, kamu bisa ngescroll nya kalo mau tau ini web apa sich...."
+];
+
+const nightLetter = [
+  "Hai melia, di bawah malam yang tenang dan gemerlap bintang ini...",
+  "semoga di hari ulang tahunmu yang ke-17 ini, semua mimpimu dan cita-citanya tercapai ya!",
+  "selamat menikmati pemandangan malam di web ini, semoga harimu selalu menyenangkan dan penuh kebahagiaan."
+];
+
+function toggleNightMode() {
+  nightMode = !nightMode;
+  document.body.classList.toggle("night-mode", nightMode);
+
+  const allImages = document.querySelectorAll(".section-photo, .carousel-slide img, .polaroid img");
+  allImages.forEach((img) => img.classList.add("fading"));
+
+  setTimeout(() => {
+    allImages.forEach((img, idx) => {
+      const photoNum = nightMode ? ((idx % 7) + 8) : ((idx % 7) + 1);
+      const newSrc = `foto/foto${photoNum}.webp`;
+      img.src = newSrc;
+      const parentFig = img.closest("figure");
+      if (parentFig && parentFig.dataset.src) {
+        parentFig.dataset.src = newSrc;
+      }
+    });
+
+    const sectionParagraphs = document.querySelectorAll(".section p");
+    sectionParagraphs.forEach((p, idx) => {
+      const texts = nightMode ? nightTexts : dayTexts;
+      p.textContent = texts[idx % texts.length];
+    });
+
+    const letterBodies = document.querySelectorAll(".letter-body");
+    letterBodies.forEach((p, idx) => {
+      const letters = nightMode ? nightLetter : dayLetter;
+      if (letters[idx]) {
+        p.textContent = letters[idx];
+      }
+    });
+
+    allImages.forEach((img) => img.classList.remove("fading"));
+  }, 400);
+}
+
+if (sunEl) {
+  sunEl.addEventListener("click", toggleNightMode);
+  sunEl.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      toggleNightMode();
+    }
+  });
+}
+
+const starLayer = document.getElementById("star-layer");
+if (starLayer) {
+  const starCount = 40;
+  for (let i = 0; i < starCount; i++) {
+    const star = document.createElement("div");
+    star.className = "star";
+    const size = Math.random() * 2.5 + 1;
+    star.style.width = `${size}px`;
+    star.style.height = `${size}px`;
+    star.style.top = `${Math.random() * 85}%`;
+    star.style.left = `${Math.random() * 100}%`;
+    star.style.setProperty("--duration", `${Math.random() * 2.5 + 1.5}s`);
+    star.style.setProperty("--delay", `${Math.random() * 3}s`);
+    starLayer.appendChild(star);
+  }
+}
